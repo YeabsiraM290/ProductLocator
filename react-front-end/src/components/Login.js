@@ -48,6 +48,7 @@ const Login = () => {
 
                    sessionStorage.setItem("access_token", user.access)
                    sessionStorage.setItem("refresh_token", user.refresh)
+                   sessionStorage.setItem("id", user.account['id'])
 
                    setTimeout(toHome, 500)
                    function toHome(){
@@ -62,7 +63,7 @@ const Login = () => {
                
             }
             catch (error) {
-             console.log("error");
+             console.log(error);
            }
          }
 
