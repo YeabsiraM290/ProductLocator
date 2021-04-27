@@ -1,7 +1,143 @@
 import React, { Component }  from 'react';
 import "../assets/css/vendorProfile.css";
+import { useState } from 'react';
 
 const VendorProfile = () => {
+    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [conform_password, setConform_password] = useState('');
+    const [phone_number, setPhone_number] = useState('');
+    const [profile_pic, setProfile_pic] = useState('');
+    const [shopname, setShopname] = useState('');
+    const [shopImage, setShopImage] = useState('');
+    const [shopLogo, setShopLogo] = useState('');
+    const [category, setCategory] = useState('');
+  
+    const [submitted, setSubmitted] = useState(false);
+    const [error, setError] = useState(false);
+    const [errorMessage, setError_message] = useState('')
+  
+    const handleEmail = (e) => {
+      setEmail(e.target.value);
+      setSubmitted(false);
+      };
+    
+      const handleProfilePic = (e) => {
+        setProfile_pic(e.target.value);
+        setSubmitted(false);
+        };
+  
+  const handleUsername = (e) => {
+      setUsername(e.target.value);
+      setSubmitted(false);
+      };
+  
+  const handlePassword = (e) => {
+      setPassword(e.target.value);
+      setSubmitted(false);
+      };
+  
+  const handleConform_password = (e) => {
+      setConform_password(e.target.value);
+      setSubmitted(false);
+      };
+  
+  const handlePhone_number = (e) => {
+      setPhone_number(e.target.value);
+      setSubmitted(false);
+      };
+    
+      const handleshopImage = (e) => {
+
+        var reader = new FileReader();
+        reader.onload = function(){
+          setShopImage(reader.result);
+          setSubmitted(false);
+        
+        }
+        reader.readAsDataURL(e.target.files[0]);
+          
+          };
+      
+      const handleshopLogo = (e) => {
+      
+        var reader = new FileReader();
+        reader.onload = function(){
+          setShopImage(reader.result);
+          setShopLogo(reader.result);
+          setSubmitted(false);
+        
+        }
+        reader.readAsDataURL(e.target.files[0]);
+        
+          };
+      
+          const handleShopname = (e) => {
+            setShopname(e.target.value);
+              setSubmitted(false);
+              };
+      
+      const handlecategory = (e) => {
+        setCategory(e.target.value);
+          setSubmitted(false);
+          };
+
+        
+    async function get_data() {
+
+        let response = await fetch('http://localhost:8000/api/vendor/', {
+         method: 'GET',
+         headers: {
+           'Accept': 'application/json',
+           'Content-Type': 'application/json',
+           'Authorization': `Bearer ${sessionStorage.getItem("access_token")}` }
+          })
+  
+        let data = await response.json();
+        return data
+    }
+
+    function send_data() {
+
+        try{
+          get_data().then(function(data){
+  
+            var profile= ''
+            
+            data.forEach(user => {
+  
+              if (user['id'] == sessionStorage.getItem('id')){
+                profile = user
+              }
+  
+              setEmail(profile['email'])
+              setUsername(profile['username'])
+              setPassword(profile['password'])
+              setPhone_number(profile['phone_no'])
+              setProfile_pic(profile['profile_pic'])
+              setShopImage(profile['more']['shop_image'])
+              setShopname(profile['more']['shop_name'])
+              setShopLogo(profile['more']['shop_logo'])
+              
+            });
+  
+            console.log(profile)
+  
+  
+          
+           }) .catch(function(err) {
+            console.log(err)
+        });
+           
+        }
+        catch (error) {
+         console.log(error);
+       }
+     }
+     send_data()
+      
+  
 
     return (
 
@@ -17,7 +153,7 @@ const VendorProfile = () => {
 
                             <div className="vprofile-img">
 
-                                <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=julian-wan-WNoLnJo7tS8-unsplash.jpg" alt="" />
+                                <img src={profile_pic}  alt="" />
                                 
                                 <br />
                                 <br />
@@ -37,7 +173,7 @@ const VendorProfile = () => {
                                 </div>
 
                                 <div className="col-9">
-                                    <input type="text" disabled id="form2Example1" placeholder="username" value={"Yeabsira"} className="form-control" />
+                                    <input type="text" disabled id="form2Example1" placeholder="username" onChange={handleUsername} value={username}className="form-control" />
                                 </div>
 
                             </div>
@@ -54,7 +190,7 @@ const VendorProfile = () => {
                                 </div>
 
                                 <div className="col-9">
-                                    <input type="email" disabled id="form2Example1" placeholder="username" value={"Yeabsira@gmail.com"} className="form-control" />
+                                    <input type="email" disabled id="form2Example1" placeholder="username" onChange={handleEmail} value={email}  className="form-control" />
                                 </div>
 
                             </div>
@@ -70,7 +206,7 @@ const VendorProfile = () => {
                                 </div>
 
                                 <div className="col-9">
-                                    <input type="number" disabled id="form2Example1" placeholder="username" value={"097542457"} className="form-control" />
+                                    <input type="number" disabled id="form2Example1" placeholder="username" onChange={handlePhone_number} value={phone_number} className="form-control" />
                                 </div>
 
                             </div>
@@ -87,7 +223,7 @@ const VendorProfile = () => {
                                 </div>
 
                                 <div className="col-9">
-                                    <input type="text" disabled id="form2Example1" placeholder="username" value={"*********"} className="form-control" />
+                                    <input type="password" disabled id="form2Example1" placeholder="" onChange={handlePassword} value={password} className="form-control" />
                                 </div>
 
                             </div>
@@ -127,7 +263,7 @@ const VendorProfile = () => {
 
                                             <div className="profile-img">
 
-                                                <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=mike-petrucci-c9FQyqIECds-unsplash.jpg" alt="" />
+                                                <img src={shopImage} alt="" />
                                                         
                                                 <br />
                                                 <br />
@@ -156,7 +292,7 @@ const VendorProfile = () => {
 
                                             <div className="shop-img profile-img">
 
-                                                <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=mike-petrucci-c9FQyqIECds-unsplash.jpg" alt="" />
+                                                <img src={shopLogo}alt="" />
                                                 
                                                 <br />
                                                 <br />
@@ -184,14 +320,14 @@ const VendorProfile = () => {
                                 </div>
 
                                 <div className="col-9">
-                                    <input type="text" disabled id="form2Example1" placeholder="username" value={"Yeabsira"} className="form-control" />
+                                    <input type="text" disabled id="form2Example1" placeholder="username" onChange={handleShopname} value={shopname} className="form-control" />
                                 </div>
 
                             </div>
 
                         </div>
 
-                        <div className="form-outline mb-4">
+                        {/* <div className="form-outline mb-4">
 
                             <div className="row">
 
@@ -205,7 +341,7 @@ const VendorProfile = () => {
 
                             </div>
 
-                        </div>
+                        </div> */}
  
                         <button type="button" className="edit-btn btn btn-secondary btn-block mb-4">Edit</button>
 
