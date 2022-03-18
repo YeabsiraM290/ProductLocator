@@ -21,3 +21,12 @@ const Footer = () => {
                                 <li> <a href="#" data-abc="true">Terms & Condition</a></li>
                                 <li> <a href="#" data-abc="true">Our Blogs</a></li>
                             </ul>
+                        </aside>
+                        <aside className="col-sm-4 col-md-2">
+                            <h6 className="title">Services</h6>
+                            <ul className="list-unstyled">
+                                <li> <a href="#" data-abc="true">Help center</a></li>
+                                <li> <a href="#" data-abc="true">Money refund</a></li>
+                                <li> <a href="#" data-abc="true">Terms and Policy</a></li>
+                                <li> <a href="#" data-abc="true">Open dispute</a></li>
+                            </ul>    
