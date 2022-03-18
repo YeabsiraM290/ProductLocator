@@ -29,4 +29,31 @@ const Footer = () => {
                                 <li> <a href="#" data-abc="true">Money refund</a></li>
                                 <li> <a href="#" data-abc="true">Terms and Policy</a></li>
                                 <li> <a href="#" data-abc="true">Open dispute</a></li>
-                            </ul>    
+                            </ul>
+                        </aside>
+                        <aside className="col-sm-4 col-md-2">
+                            <h6 className="title">For users</h6>
+                            <ul className="list-unstyled">
+                                <li> <a href="#" data-abc="true"> User Login </a></li>
+                                <li> <a href="#" data-abc="true"> User register </a></li>
+                                <li> <a href="#" data-abc="true"> Account Setting </a></li>
+                                <li> <a href="#" data-abc="true"> My Orders </a></li>
+                            </ul>
+                        </aside>
+                   
+                    </div>
+                </section>
+                <section className="footer-copyright border-top">
+                    <p className="float-left text-muted"> © 2022 ProductLocator All rights resetved </p>
+                    <p target="_blank" className="float-right text-muted"> <a href="#" data-abc="true">Privacy &amp; Cookies</a> &nbsp; &nbsp; <a href="#" data-abc="true">Accessibility</a> </p>
+                </section>
+            </div>
+   
+        </footer>
+
+
+    )
+
+}
+
+export default Footer        
