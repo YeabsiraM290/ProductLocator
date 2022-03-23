@@ -1,0 +1,124 @@
+.home-product{
+    background:#fff;
+    padding:15px;
+    border-radius:6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    position:relative;
+    margin:20px auto;
+}
+
+.home-product-img{
+    position:absolute;  
+    top:5px;
+    left:50%;
+    transform:translate(-50%);
+    -webkit-transform:translate(-50%);
+    -ms-transform:translate(-50%);
+    -moz-transform:translate(-50%);
+    -o-transform:translate(-50%);
+    -khtml-transform:translate(-50%);
+    width: 100%;
+    padding: 15px;
+    transition: all 0.2s ease-in-out;
+}
+
+.home-product-img img{
+    width:100%;
+    transition: all 0.2s ease-in-out;
+    border-radius:6px;
+}
+
+.home-product:hover .home-product-img{
+    top:-40px;
+}
+
+.home-product:hover .home-product-img img{
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+.home-product-text{
+    padding-top:150%;
+}
+
+.home-product-text .toshop{
+    text-align:center;
+    font-size:0.7rem;
+    font-weight:bold;
+    margin-bottom:45px;
+    position:relative;
+    transition: all 0.2s ease-in-out;
+}
+
+.home-product-text .toshop > *{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    -khtml-transform: translate(-50%,-50%);   
+}
+
+.home-product-text .toshop > span{
+    padding: 12px 15px;
+    border: 1px solid #505cfd;
+    background:#4154ff;
+    color:#fff;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    border-radius:27px;
+    transition: all 0.05s ease-in-out;
+}
+
+.home-product:hover .home-product-text .toshop > span{
+    border-color:#ddd;
+    box-shadow: none;
+    padding: 11px 28px;
+}
+
+.home-product:hover .home-product-text .toshop{
+    margin-top: 0px;
+}
+
+.home-product-text .home-product-title{
+    text-align:center;
+}
+
+.home-product-text .home-product-title h3{
+    font-size:1.2rem;
+    font-weight:bold;
+    width:100%;
+}
+
+.home-product-text .home-product-description p{
+    font-size: 0.8rem;
+}
+
+.home-product-text .home-product-description {
+    text-align:center;
+    width: 100%;
+    height:62px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-bottom:15px;
+}
+
+.home-product-price{
+    font-size:1rem;
+    font-weight: 500;
+}
+
+.home-item-cart-btn{
+    background-color: #6473fa !important;
+    color: white;
+    border-radius: 0.4rem;
+    width: 100%;
+    border: none;
+    height: 100%;
+}
+
+.fa-shopping-cart{
+    size: 1rem !important;
+}
