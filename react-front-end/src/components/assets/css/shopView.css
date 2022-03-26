@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+  
+  :root{
+    --bg-shape-color:linear-gradient(120deg,  #f4f5ff, #f2f4f7) ;
+  }
+  
+  .wrapper{
+    width:230px;
+    border-radius: 40px;
+    background-image: var(--bg-shape-color);
+    overflow: hidden;
+  }
+
+  .shop-name{
+
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+
+  
+  .cartbutton svg {
+  color: black;
+  }
+  .cartbutton{
+  
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  }
+  
+  .neurobutton{
+    background-image: var(--bg-shape-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: inset 3px 4px 5px 0px rgba(197, 197, 197, 0.1), inset 3px 6px 6px 5px rgba(78, 77, 77, 0.1), -2px -2px 8px 2px rgba(255,255,255,0.1), 2px 2px 6px 3px rgba(0,0,0,0.4);
+  }
+  
+  .productImage {
+   
+    
+      width: 100%;
+      height: 100%;
+  
+  }
+  
+
+  .featureText{
+  
+    font-size: 0.9rem;
+  }
+  
+  .productSpecifications{
+  
+    margin-left: 1rem;
+    margin-right: 1rem;
+    color: black;
+    margin-bottom: 1rem;
+  
+  }
+
+  .item-discription{
+  
+    font-size: 0.8rem;
+  }
+  
+  
+
+.priceTag {
+      text-align: center;
+      font-size: 0.8rem;
+  }
+  
+.priceTag span {
+    
+      color: #488dc7;
+      font-weight: bold;
+      font-size: 1.2rem;
+  }
+  
+
+  .shop_view_items{
+
+    margin: 0px 3rem;
+  }
