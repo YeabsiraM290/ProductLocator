@@ -1,0 +1,27 @@
+.pay-button {
+    color: #fff
+}
+
+.pay-button:hover {
+    color: #fff
+}
+
+.pay-button:focus {
+    color: #fff;
+    box-shadow: none
+}
+
+.wish-list-item-info{
+
+    margin: 0px !important;
+}
+
+.wish-list-btns{
+
+    margin: 1rem;
+    font-size: 1rem;
+    background-color: #4154ff;
+    color: white;
+}
+
+
