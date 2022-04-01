@@ -55,3 +55,111 @@ const SearchResult = () => {
 				  	<input type="checkbox" className="custom-control-input" id="Check3" />
 				  	<label className="custom-control-label" for="Check3">Samsung</label>
 				</div>
+                <div className="custom-control custom-checkbox">
+					<span className="float-right badge badge-light round">7</span>
+				  	<input type="checkbox" className="custom-control-input" id="Check4" />
+				  	<label className="custom-control-label" for="Check4">Other Brand</label>
+				</div>
+			</div> 
+		</div>
+	</article> 
+</div> 
+                </div>
+            <div className="col-8">
+
+            <div className="row cartRow mb-4">
+    <div className="col-6"><img className="img"  src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=christian-wiediger-WkfDrhxDMC8-unsplash.jpg" alt="First slide" width="200px" height="100px" />
+      
+ 
+     </div>
+     
+
+      <div className="col-6">
+      Dell xps15<br />
+      200,000<br />
+      Dell xps15<br />
+      <span className="fa fa-star checked"></span>
+<span className="fa fa-star checked"></span>
+<span className="fa fa-star checked"></span>
+<span className="fa fa-star"></span>
+<span className="fa fa-star"></span>
+<span className="count">500</span>
+       
+        
+      </div>
+  
+  </div>
+
+  <div className="row cartRow mb-4">
+    <div className="col-6"><img className="img"  src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=christian-wiediger-WkfDrhxDMC8-unsplash.jpg" alt="First slide" width="200px" height="100px" />
+      
+ 
+     </div>
+     
+
+      <div className="col-6">
+      Dell xps15<br />
+      200,000<br />
+      Dell xps15<br />
+      <span className="fa fa-star checked"></span>
+<span className="fa fa-star checked"></span>
+<span className="fa fa-star checked"></span>
+<span className="fa fa-star"></span>
+<span className="fa fa-star"></span>
+<span className="count">500</span>
+       
+        
+      </div>
+  
+  </div>
+  <div className="row cartRow mb-4">
+    <div className="col-6"><img className="img"  src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=christian-wiediger-WkfDrhxDMC8-unsplash.jpg" alt="First slide" width="200px" height="100px" />
+      
+ 
+     </div>
+     
+
+      <div className="col-6">
+      Dell xps15<br />
+      200,000<br />
+      Dell xps15<br />
+      <span className="fa fa-star checked"></span>
+<span className="fa fa-star checked"></span>
+<span className="fa fa-star checked"></span>
+<span className="fa fa-star"></span>
+<span className="fa fa-star"></span>
+<span className="count">500</span>
+       
+        
+      </div>
+  
+  </div>
+
+  <div className="row cartRow mb-4">
+    <div className="col-6"><img className="img"  src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=christian-wiediger-WkfDrhxDMC8-unsplash.jpg" alt="First slide" width="200px" height="100px" />
+      
+ 
+     </div>
+     
+
+      <div className="col-6">
+      Dell xps15<br />
+      200,000<br />
+      Dell xps15<br />
+      <span className="fa fa-star checked"></span>
+<span className="fa fa-star checked"></span>
+<span className="fa fa-star checked"></span>
+<span className="fa fa-star"></span>
+<span className="fa fa-star"></span>
+<span className="count">500</span>
+       
+        
+      </div>
+  
+  </div>
+
+  <div className="row cartRow mb-4">
+    <div className="col-6"><img className="img"  src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=christian-wiediger-WkfDrhxDMC8-unsplash.jpg" alt="First slide" width="200px" height="100px" />
+      
+ 
+     </div>
