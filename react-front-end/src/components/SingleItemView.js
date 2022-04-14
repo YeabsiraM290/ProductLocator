@@ -79,4 +79,53 @@ const SingleItem = () =>{
 
                     <div className="container text-center">
 
+                    <div className="row">
+
+                    <div className="col-3">
+                    <label for="shop_img">Price</label>
+                    </div>
+
+                    <div className="col-9">
+
+                                <p>2000</p>
+
+                            
+                    </div>
+                    </div>
+
+                    </div>
+
+                    <div className="container text-center">
+
                    
+                <div className="row">
+
+                <div className="col-3">
+                <span className="fa fa-star checked"></span>
+                <span className="fa fa-star checked"></span>
+                <span className="fa fa-star checked"></span>
+                <span className="fa fa-star"></span>
+                <span className="fa fa-star"></span>
+                <span className="count">500</span>
+                </div>
+
+                <div className="col-9">
+                    <a href="#">Shop location</a>
+                    </div>
+
+                </div>
+
+                </div>
+
+
+    </div>
+                
+                </div>
+            
+        
+    )
+
+
+} 
+
+export default SingleItem
