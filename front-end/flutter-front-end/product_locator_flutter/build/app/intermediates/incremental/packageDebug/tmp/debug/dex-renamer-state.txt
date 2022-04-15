@@ -1,0 +1,4 @@
+#Sat May 28 11:00:43 EAT 2022
+base.0=/home/ermias/projects/product_locator_flutter/product_locator_flutter/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
