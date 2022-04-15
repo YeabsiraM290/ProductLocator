@@ -1,0 +1,25 @@
+.map-container{
+
+    margin-bottom: 2rem;
+    padding: 1rem !important;
+  }
+  
+.map-item-list{
+  
+      box-shadow: 0 15px 30px 1px rgb(179, 178, 178);
+  } 
+
+.shop-title{
+
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2rem;
+    color: #344055;
+  
+  }
+
+.map-frame{
+
+    height: 100%;
+    width: 100%;
+    margin-left: 1rem;
+  }

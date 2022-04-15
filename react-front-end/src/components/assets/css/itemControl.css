@@ -1,0 +1,27 @@
+.add-item-btn{
+
+    color: #4154ff !important;
+    text-align: right;
+    margin-right: 1rem !important;
+}
+
+.item-control-itemlist {
+
+    overflow-y: scroll;
+    height: 120vh;
+}
+
+.item-control-titles{
+
+    font-size: 1.5rem;
+}
+
+.item-control-con{
+
+    box-shadow: 0 4px 8px 0 rgba(116, 115, 115, 0.2), 0 6px 20px 0 rgba(85, 84, 84, 0.19);
+}
+
+.item-control-imgs{
+
+    margin: 0.3rem  ;
+}

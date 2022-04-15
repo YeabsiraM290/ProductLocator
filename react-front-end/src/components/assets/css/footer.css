@@ -1,0 +1,23 @@
+footer{
+
+    padding: 0.4rem;
+    background-color: rgb(228, 234, 255);
+}
+
+.footer-copyright {
+    margin-top: 13px
+}
+
+footer a {
+    text-decoration: none !important;
+    color: #777a7c;
+    font-size: 0.8rem;
+}
+
+.description {
+    font-size: 12px
+}
+
+.footer-copyright p {
+    margin-top: 10px
+}

@@ -1,0 +1,33 @@
+.vendor-signup-container{
+    width: 40%;
+    padding: 2rem;
+    margin-bottom: 1rem;
+    margin-top: 2.5rem;
+    background-color: white;
+    border-radius: 0.3rem;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 8px 0 rgba(29, 28, 28, 0.2), 0 6px 20px 0 rgba(49, 49, 49, 0.19);
+} 
+
+.vendor-signup-plan-con {
+    width: 60%;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    margin-top: 2.5rem;
+    background-color: white;
+    border-radius: 0.3rem;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 8px 0 rgba(29, 28, 28, 0.2), 0 6px 20px 0 rgba(49, 49, 49, 0.19);
+}
+
+.vendor-signup-title{
+
+    font-size: 1.5rem;
+    text-align: left !important;
+}
+
+.notice{
+
+    color: red;
+    font-size: 0.8rem;
+}

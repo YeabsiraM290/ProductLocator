@@ -1,19 +1,19 @@
 .signup-container{
     
-    width: 31%;
-    padding: 3rem;
+    width: 28%;
+    padding: 2rem;
     margin-bottom: 1rem;
     margin-top: 2.5rem;
     background-color: white;
     border-radius: 0.3rem;
     font-family: Arial, sans-serif;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(29, 28, 28, 0.2), 0 6px 20px 0 rgba(49, 49, 49, 0.19);
 }
 
 .signup-title {
 
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-size: 2rem;
+    text-align: left;
 }
 
 .form-check-label{

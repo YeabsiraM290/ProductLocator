@@ -1,156 +1,32 @@
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import ItemHorizonatlCard from "./ItemHorizontalCard";
+import './assets/css/map.css'
 
 const Map = () => {
 
     return(
 
-        <div className="row mt-3 item-control">
+        <div className="row mt-3 map-container">
       
-            
-
             <div className="col-7">
 
+                <iframe className="map-frame" src="https://maps.google.com/maps?q=5kilo&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
  
-                </div>
-            <div className="col-5">
-
-            <div className="row  mb-4">
-    <div className="col-6"><img className="img"  src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=christian-wiediger-WkfDrhxDMC8-unsplash.jpg" alt="First slide" width="200px" height="100px" />
-      
- 
-     </div>
-     
-
-      <div className="col-6">
-      Dell xps15<br />
-      200,000<br />
-      Dell xps15<br />
-      <span className="fa fa-star checked"></span>
-<span className="fa fa-star checked"></span>
-<span className="fa fa-star checked"></span>
-<span className="fa fa-star"></span>
-<span className="fa fa-star"></span>
-<span className="count">500</span>
-       
-        
-      </div>
-  
-  </div>
-
-  <div className="row  mb-4">
-    <div className="col-6"><img className="img"  src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=christian-wiediger-WkfDrhxDMC8-unsplash.jpg" alt="First slide" width="200px" height="100px" />
-      
- 
-     </div>
-     
-
-      <div className="col-6">
-      Dell xps15<br />
-      200,000<br />
-      Dell xps15<br />
-      <span className="fa fa-star checked"></span>
-<span className="fa fa-star checked"></span>
-<span className="fa fa-star checked"></span>
-<span className="fa fa-star"></span>
-<span className="fa fa-star"></span>
-<span className="count">500</span>
-       
-        
-      </div>
-  
-  </div>
-  <div className="row  mb-4">
-    <div className="col-6"><img className="img"  src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=christian-wiediger-WkfDrhxDMC8-unsplash.jpg" alt="First slide" width="200px" height="100px" />
-      
- 
-     </div>
-     
-
-      <div className="col-6">
-      Dell xps15<br />
-      200,000<br />
-      Dell xps15<br />
-      <span className="fa fa-star checked"></span>
-<span className="fa fa-star checked"></span>
-<span className="fa fa-star checked"></span>
-<span className="fa fa-star"></span>
-<span className="fa fa-star"></span>
-<span className="count">500</span>
-       
-        
-      </div>
-  
-  </div>
-
-  <div className="row  mb-4">
-    <div className="col-6"><img className="img"  src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=christian-wiediger-WkfDrhxDMC8-unsplash.jpg" alt="First slide" width="200px" height="100px" />
-      
- 
-     </div>
-     
-
-      <div className="col-6">
-      Dell xps15<br />
-      200,000<br />
-      Dell xps15<br />
-      <span className="fa fa-star checked"></span>
-<span className="fa fa-star checked"></span>
-<span className="fa fa-star checked"></span>
-<span className="fa fa-star"></span>
-<span className="fa fa-star"></span>
-<span className="count">500</span>
-
-</div>
-  
-  </div>
-
-  <div className="row  mb-4">
-    <div className="col-6"><img className="img"  src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=christian-wiediger-WkfDrhxDMC8-unsplash.jpg" alt="First slide" width="200px" height="100px" />
-      
- 
-     </div>
-     
-
-      <div className="col-6">
-      Dell xps15<br />
-      200,000<br />
-      Dell xps15<br />
-      <span className="fa fa-star checked"></span>
-<span className="fa fa-star checked"></span>
-<span className="fa fa-star checked"></span>
-<span className="fa fa-star"></span>
-<span className="fa fa-star"></span>
-<span className="count">500</span>
-       
-        
-      </div>
-  
-  </div>
-
-  <div className="row  mb-4">
-    <div className="col-6"><img className="img"  src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=christian-wiediger-WkfDrhxDMC8-unsplash.jpg" alt="First slide" width="200px" height="100px" />
-      
- 
-     </div>
-     
-
-      <div className="col-6">
-      Dell xps15<br />
-      200,000<br />
-      Dell xps15<br />
-      <span className="fa fa-star checked"></span>
-<span className="fa fa-star checked"></span>
-<span className="fa fa-star checked"></span>
-<span className="fa fa-star"></span>
-<span className="fa fa-star"></span>
-<span className="count">500</span>
-       
-        
-      </div>
-  
-  </div>    
+            </div>
                 
-                </div>
+            <div className="col-5 map-item-list">
+
+                <p className="text-center shop-title mt-2">Shop Name</p>
+     
+                {ItemHorizonatlCard()}
+                {ItemHorizonatlCard()}
+                {ItemHorizonatlCard()}
+                {ItemHorizonatlCard()}
+                {ItemHorizonatlCard()}
+                {ItemHorizonatlCard()}
+                {ItemHorizonatlCard()}
+    
+            </div>
 
         </div>
     )

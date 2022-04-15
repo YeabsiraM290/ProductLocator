@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bree+Serif&family=EB+Garamond:ital,wght@0,500;1,800&display=swap');
+
+.horizontal-item-con{
+    margin: 1rem;
+	box-shadow: 0 15px 30px 1px rgb(226, 225, 225);
+	background: rgba(255, 255, 255, 0.90);
+	text-align: center;
+	border-radius: 5px;
+	overflow: hidden;
+	height: 200px;
+	width: 500px;
+}
+
+.horizontal-product-details {
+	text-align: left;
+	overflow: hidden;
+	padding: 11px;
+	height: 100%;
+	float: left;
+	width: 40%;
+}
+
+.horizontal-item-con .horizontal-product-details h1{
+	font-family: 'Bebas Neue', cursive;
+	font-size: 1.5rem;
+	color: #344055;
+}
+
+.fa-star {
+	color: gold;
+}
+
+.btn {
+	background:  #4154ff !important;
+}
+
+.horizontal-product-image {
+	transition: all 0.3s ease-out;
+	overflow: hidden;
+	height: 100%;
+}
+
+.horizontal-item-con img {width: 100%;height: 100%;}
+.horizontal-product-image:hover img {transition: all 0.3s ease-out;}
+.horizontal-product-image:hover img {transform: scale(1.2, 1.2);}

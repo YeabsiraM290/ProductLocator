@@ -1,0 +1,12 @@
+.vendor-menu{
+
+    background-color: rgb(245, 247, 250);
+    height: 4rem;
+} 
+
+.vendor-menu-items{
+    text-decoration: none;
+    font-size: 1rem; 
+    font-weight: bold; 
+
+}

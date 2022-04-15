@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
+
+.navbar-nav>li>a {
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-right: 20px;
+    color: #fff
+}
+
+.navbar-toggler {
+    padding: .20rem .50rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid white
+}
+
+
+.nav-link {
+    color: #fff !important;
+    font-size: 0.8rem !important;
+    font-weight: bold;
+}
+
+
+.navbar-brand {
+    color: #fff;
+    font-family: 'Allerta Stencil', sans-serif;
+    margin-bottom: 4px;
+    font-size: 25px;
+}
+
+.navbar-red:hover .wrapper {
+    clip-path: polygon(81% 0, 100% 0, 100% 50%, 100% 100%, 65% 100%)
+}
+
+.navbar-brand:hover {
+    color: #fff
+}
+
+.navbar-red {
+    background-color: rgb(107, 146, 255);
+    color: #fff
+}
+
+.all-show {
+    z-index: 10
+} 
+
+.seach-nav{
+
+  margin-left: 2rem !important;
+}
+
+.search-bar{
+
+  width: 30rem !important;
+ 
+}
+
+.search-btn {
+  background-color: white !important;
+  border: none !important;
+  width: 20% !important;
+  color: white;
+}
+  
+   
+  
