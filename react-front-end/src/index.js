@@ -1,8 +1,9 @@
 import React from 'react';
+
 import ReactDOM from 'react-dom';
 import './index.css';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import "bootstrap/dist/css/bootstrap.min.css"
+import 'bootstrap/dist/css/bootstrap.css';
 import App from './App';
 import Login from './components/Login'
 import Header from './components/Header'

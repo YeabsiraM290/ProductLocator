@@ -1,5 +1,5 @@
 import './assets/css/singleItem.css'
-
+import React, { Component }  from 'react';
 import { Carousel } from "react-bootstrap"
 const SingleItem = () =>{
 

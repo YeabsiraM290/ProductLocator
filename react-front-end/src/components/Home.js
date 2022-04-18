@@ -1,3 +1,4 @@
+import React, { Component }  from 'react';
 import HomeItem from "./HomeItem"
 import './assets/css/home.css'
 

@@ -1,5 +1,6 @@
 import ItemCard from './ItemCard'
 import './assets/css/shopView.css'
+import React, { Component }  from 'react';
 
 const ShopView = () => {
 

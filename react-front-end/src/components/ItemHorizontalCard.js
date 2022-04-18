@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import './assets/css/horizontalCard.css'
+import React, { Component }  from 'react';
 
 const ItemHorizonatlCard = () => {
 

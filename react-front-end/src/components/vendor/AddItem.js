@@ -1,3 +1,4 @@
+import React, { Component }  from 'react';
 import "../assets/css/addItem.css";
 
 const AddItem = () =>{

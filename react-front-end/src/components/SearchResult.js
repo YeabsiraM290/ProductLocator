@@ -1,5 +1,6 @@
 import './assets/css/searchResult.css'
 import Results from './Results'
+import React, { Component }  from 'react';
 
 const SearchResult = () => {
 

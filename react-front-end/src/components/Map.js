@@ -1,6 +1,7 @@
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
+// import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import ItemHorizonatlCard from "./ItemHorizontalCard";
 import './assets/css/map.css'
+import React, { Component }  from 'react';
 
 const Map = () => {
 

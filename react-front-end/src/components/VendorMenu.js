@@ -1,4 +1,5 @@
 import './assets/css/vendorMenu.css'
+import React, { Component }  from 'react';
 
 const VendorMenu = () => {
 

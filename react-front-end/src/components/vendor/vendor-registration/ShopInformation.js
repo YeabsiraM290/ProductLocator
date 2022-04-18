@@ -1,5 +1,6 @@
 import "../../assets/css/vendorSignup.css";
 import { useNavigate } from 'react-router-dom';
+import React, { Component }  from 'react';
 
 const StepTwo = () => {
 

@@ -1,3 +1,4 @@
+import React, { Component }  from 'react';
 import '../assets/css/profile.css'
 
 const UserProfile = () => {

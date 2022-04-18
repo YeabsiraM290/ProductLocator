@@ -1,3 +1,4 @@
+import React, { Component }  from 'react';
 import "../assets/css/itemControl.css";
 import ItemHorizonatlCard from "../ItemHorizontalCard";
 

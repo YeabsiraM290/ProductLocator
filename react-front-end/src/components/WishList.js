@@ -1,5 +1,6 @@
 import './assets/css/wishList.css'
 import WishListItem from './WishListItem'
+import React, { Component }  from 'react';
 
 const WishList = () => {
 
