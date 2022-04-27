@@ -16,7 +16,7 @@ import StepOne from './components/vendor/vendor-registration/VendorInformation'
 import StepTwo from './components/vendor/vendor-registration/ShopInformation'
 import Final from './components/vendor/vendor-registration/SelectPlan'
 import UserProfile from './components/customer/UserProfile'
-import Map from './components/Map'
+import Maps from './components/Map'
 import ForgetPass from './components/ForgetPassword';
 import ShopView from './components/ShopView';
 import SingleItem from './components/SingleItemView';
@@ -42,7 +42,7 @@ const routing = (
         <Route path="/forget_password" element={[<Header/>, <ForgetPass/>] }/>
         <Route path="/profile" element={[<Navigation/>, <UserProfile/>] }/>
         <Route path="/shop_view" element={[<Navigation/>, <ShopView/>] }/>
-        <Route path="/map" element={[<Navigation/>, <Map/>] }/>
+        <Route path="/map" element={[<Navigation/>, <Maps/>] }/>
         <Route path="/search_result" element={[<Navigation/>, <SearchResult/>] }/>
         <Route path="/item_view" element={[<Navigation/>, <SingleItem/>] }/>
         <Route path="/add_item" element={[<Navigation/>,<VendorMenu/>, <AddItem/>] }/>
