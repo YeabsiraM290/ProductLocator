@@ -20,7 +20,7 @@ class CustomerLoginRepo {
   get_User_Login(String? email, String? password) async {
     var Customer_login_url = await http.post(
         Uri.parse(
-          'http://127.0.0.1:8000/api/token/',
+          'http://10.0.2.2:8000/api/token/',
         ),
         // headers: {"content-type": "application/json"},
 
