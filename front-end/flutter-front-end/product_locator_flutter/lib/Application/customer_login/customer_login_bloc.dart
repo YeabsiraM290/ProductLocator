@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:product_locator_flutter/Data/Model/Login/login_model.dart';
 // import 'package:product_locator_flutter/Application/customer_login/form_submission_sate.dart';
 // import 'package:product_locator_flutter/Data/Model/Customer_model/customer_login_model.dart';
 import 'package:product_locator_flutter/Data/Repository/customer_login_repo.dart';
@@ -15,31 +16,31 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   CustomerLoginRepo repo;
   AuthBloc(AuthState initailState, this.repo) : super(initailState) {
     on<AuthEvent>((event, emit) async {
-      var pref = await SharedPreferences.getInstance();
-      final UserInfo = await UserSecureStorage.getUserInfo() ?? [];
-
-      // if (event is LoginButtonPressd) {
-      //   // if (event.email!.isEmpty || event.password!.isEmpty) {}
-      //   // emit(LoginErrorState(message: 'auth error'));
-      // }
       if (event is LoginButtonPressd) {
         emit(LoginLoadingState());
 
         var data = await repo.get_User_Login(event.email, event.password);
         // print(data);
-        var userInfo = {
-          'access_token': data['access'],
-          'refresh_token': data['refresh'],
-          'id': data['account']['id']
-        };
-        // print(userInfo);
-        // print('local storage');
+        if (data['account']['more']['category'] != null) {
+          var categroy = data['account']['more']['category'];
+          var userid = data['account']['id'];
+          usertype("vendor");
+          saveuserid(userid.toString());
+          print(userid.toString());
+          savecategory(categroy);
+          print('its a vendor');
+        } else {
+          var userid = data['account']['id'];
+          usertype("customer");
+          saveuserid(userid.toString());
+          print('its a customer');
+        }
+        print(data);
+        var access_token = data['access'];
 
-        await UserSecureStorage.setUserInfo(userInfo);
+        print(access_token);
+        saveMyName(access_token);
 
-        // print(data);
-        pref.setString("token", data['access']);
-        pref.setString("refresh", data['refresh']);
         emit(UserLoginSuccessState());
       } else if (event is LoginErrorEvent) {
         emit(LoginErrorState(message: 'please check your name and password'));
@@ -47,24 +48,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
   }
 }
-    
-          
-  // @override
-  // Stream<AuthState> mapEventToState(AuthEvent event) async* {
-  //   var pref = await SharedPreferences.getInstance();
-  //   if (event is StartEvent) {
-  //     yield LoginInitState();
-  //   } else if (event is LoginButtonPressd) {
-  //     yield LoginLoadingState();
-  //     var data = await repo.get_User_Login(event.email, event.password);
-  //     print(data);
-  //     pref.setString("token", data['access']);
-  //     pref.setString("refresh", data['refresh']);
-  //     // pref.setString("token", data['access']);
-  //     // pref.setString("token", data['access']);
-  //     yield UserLoginSuccessState();
-  //     yield AdmnLoginSuccessState();
-  //   } else {
-  //     yield LoginErrorState(message: 'auth error');
-  //   }
-  // }
+
+Future<void> saveMyName(String token) async {
+  final pref = await SharedPreferences.getInstance();
+  pref.setString("authtoken", token);
+}
+
+Future<void> savecategory(String category) async {
+  final pref = await SharedPreferences.getInstance();
+  pref.setString("category", category);
+}
+
+Future<void> usertype(String usertype) async {
+  final pref = await SharedPreferences.getInstance();
+  pref.setString("usertype", usertype);
+}
+
+Future<void> saveuserid(String userid) async {
+  final pref = await SharedPreferences.getInstance();
+  pref.setString("userid", userid);
+}

@@ -10,7 +10,13 @@ class LoginInitState extends AuthState {}
 
 class LoginLoadingState extends AuthState {}
 
-class UserLoginSuccessState extends AuthState {}
+class UserLoginSuccessState extends AuthState {
+  // final Login loginlist;
+
+  // UserLoginSuccessState(this.loginlist);
+  // @override
+  // List<Object> get props => [loginlist];
+}
 
 class AdmnLoginSuccessState extends AuthState {}
 
