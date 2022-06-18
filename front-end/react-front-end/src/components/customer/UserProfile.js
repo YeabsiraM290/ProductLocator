@@ -1,7 +1,8 @@
 import React, { Component }  from 'react';
 import '../assets/css/profile.css'
 import { ValidateEmail, Validatephonenumber, ValidateLength, ValidatePassword } from '../../Helpers/validation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const UserProfile = () => {
   const [email, setEmail] = useState('');
@@ -10,10 +11,15 @@ const UserProfile = () => {
   const [conform_password, setConform_password] = useState('');
   const [phone_number, setPhone_number] = useState('');
   const [profile_pic, setProfile_pic] = useState('');
+  const [edit, setEdit] = useState(false);
 
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setError_message] = useState('')
+  const history = useNavigate();
+  useEffect(() => {
+    send_data();
+  }, []);
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -44,8 +50,44 @@ const handlePhone_number = (e) => {
     setPhone_number(e.target.value);
     setSubmitted(false);
     };
+    const handleEdit = (e) => {
+      setEdit(!edit)
+    }
+    async function handelDel (e) {
+      let response = await fetch(`http://localhost:8000/api/customer/${sessionStorage.getItem("id")}/`, {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionStorage.getItem("access_token")}` }
+         })
+ 
+       let data = await response;
+      
+       if (data.status==204){
+         sessionStorage.clear()
+         
+               
+         history('/login')
+       }
+    }
 
-
+    async function handelSave (e) {
+      let response = await fetch(`http://localhost:8000/api/customer/${sessionStorage.getItem("id")}/`, {
+        method: 'PATCH',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionStorage.getItem("access_token")}` },
+          body: JSON.stringify({
+            username: username,
+            password: password,
+        })
+         },)
+ 
+       let data = await response;
+     setEdit(false)
+    }
     async function get_data() {
 
       let response = await fetch('http://localhost:8000/api/customer/', {
@@ -97,7 +139,7 @@ const handlePhone_number = (e) => {
        console.log(error);
      }
    }
-   send_data()
+  
             // Handling the form submission
             const handleSubmit = (e) => {
               e.preventDefault();
@@ -179,7 +221,7 @@ const handlePhone_number = (e) => {
 
                     <div className="mt-3">
                       <h4>{username}</h4>
-                      <a type="button" className="del-account">Terminate account</a>
+                      <a type="button" className="del-account" onClick={handelDel}>Terminate account</a>
                     </div>
 
                   </div>
@@ -204,7 +246,8 @@ const handlePhone_number = (e) => {
                       </div>
 
                       <div className="col-sm-9 text-secondary">
-                        <input type="text" id="username"  onChange={handleUsername} value={username} disabled className="form-control" />
+                        {edit && <input type="text" id="username"  onChange={handleUsername} value={username} className="form-control" />}
+                        {!edit && <input type="text" id="username" disabled  onChange={handleUsername} value={username} className="form-control" />}
                       </div>
 
                     </div>
@@ -245,7 +288,8 @@ const handlePhone_number = (e) => {
                       </div>
 
                       <div className="col-sm-9 text-secondary">
-                        <input type="password" id="pass"  onChange={handlePassword} value={password} disabled className="form-control" />
+                        {edit &&  <input type="password" id="pass"  onChange={handlePassword} value={password}  className="form-control" />}
+                        {!edit &&  <input type="password" id="pass" value={password}  onChange={handlePassword}  disabled className="form-control" />}
                       </div>
 
                     </div>
@@ -254,9 +298,13 @@ const handlePhone_number = (e) => {
          
                     <div className="row">
 
+                      {edit &&   <div className="col-sm-12 text-center mt-2">
+                      <button type="button" className="save-btn  btn-block mb-4" onClick={handelSave}>Save</button>
+                      </div>}
+{!edit && 
                       <div className="col-sm-12 text-center mt-2">
-                      <button type="button" className="edit-btn btn btn-secondary btn-block mb-4">Edit</button>
-                      </div>
+                      <button type="button" className="edit-btn btn btn-secondary btn-block mb-4" onClick={handleEdit}>Edit</button>
+                      </div>}
 
                     </div>
 

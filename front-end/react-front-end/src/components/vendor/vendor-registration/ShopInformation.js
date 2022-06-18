@@ -34,10 +34,6 @@ function setlocation(lat, long){
   positions[1] = Number((long).toFixed(1))
 }
 
-console.log(positions)
-
-
-
 
 function showError(error){
     switch(error.code){
@@ -111,7 +107,7 @@ const handlecategory = (e) => {
     setSubmitted(false);
     };
 
-
+    var x= "Resturant"
     const history = useNavigate();
     const {state} = useLocation();
 
@@ -130,15 +126,12 @@ const handlecategory = (e) => {
                username: state.detail[0],
                password:state.detail[2],
                phone_no:state.detail[3],
-               more: {
+              
                 shop_name: shopname,
-                shop_image: shopImage,
-                shop_logo: shopLogo,
+                category: x,
                 location_latitude: positions[0],
-                location_longitude: positions[1],
-                category: category,
-                is_premium: false,
-            }
+                location_longitude: positions[1]
+               
            })
          })
 
@@ -147,7 +140,7 @@ const handlecategory = (e) => {
              setError(false)
              setTimeout(toLogin, 500)
              function toLogin(){
-              history('/home')
+              history('/login')
              }
          }
          else{
@@ -159,13 +152,12 @@ const handlecategory = (e) => {
                 username: state.detail[0],
                 password:state.detail[2],
                 phone_no:state.detail[3],
-                more: {
+               
                  shop_name: shopname,
-                 location_latitude: positions[0].toString(),
-                 location_longitude: positions[1].toString(),
-                 category: category,
-                 is_premium: false,
-             }
+                 category: x,
+                 location_latitude: positions[0],
+                 location_longitude: positions[1]
+                
             })
              )
              setError_message(response.statusText)
@@ -296,9 +288,9 @@ const handlecategory = (e) => {
 
               <select class="form-select" onChange={handlecategory} aria-label="Default select example">
 
-                <option value ="Resturant" selected>Resturant</option>
-                <option value="Gas station">Gas station</option>
-                <option value="Hardware store">Hardware store</option>
+                <option value ="Resturant">Resturant</option>
+                <option value="Gasstation">Gas station</option>
+                <option value="Hardwarestore">Hardware store</option>
                 <option value="Boutique">Boutique</option>
                 
               </select>

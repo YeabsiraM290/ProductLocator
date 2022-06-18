@@ -19,6 +19,7 @@
 .item-control-con{
 
     box-shadow: 0 4px 8px 0 rgba(116, 115, 115, 0.2), 0 6px 20px 0 rgba(85, 84, 84, 0.19);
+    width: 100%;
 }
 
 .item-control-imgs{

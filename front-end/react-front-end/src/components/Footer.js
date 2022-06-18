@@ -10,7 +10,7 @@ const Footer = () => {
                     <div className="row">
                         <aside className="col-md-6">
                             <article className="mr-3">
-                                <p className="mt-3 description">Some short text about company like You might remember the Dell computer commercials in which a youth reports this exciting news to his friends.</p>
+                                <p className="mt-3 description">Product locator</p>
                               
                             </article>
                         </aside>

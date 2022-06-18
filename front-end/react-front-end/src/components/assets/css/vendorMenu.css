@@ -10,3 +10,11 @@
     font-weight: bold; 
 
 }
+
+.accept{
+    color: green;
+}
+
+.decline{
+    color:red;
+}

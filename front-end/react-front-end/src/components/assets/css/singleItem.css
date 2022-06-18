@@ -1,6 +1,7 @@
  .slides{
     border-radius: 0.5rem !important;
-    height: 50%;  
+    height: 100%;  
+    width:50%;
 }
   
 .slide-show{
@@ -68,7 +69,7 @@
 .comment {
    
     background-color: rgba(234, 236, 255, 0.973);
-    float: left;
+    padding-bottom: 0.5rem;
     border-radius: 5px;
     padding-left: 40px;
     padding-right: 30px;

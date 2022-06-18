@@ -1,7 +1,205 @@
 import './assets/css/singleItem.css'
 import React, { Component }  from 'react';
-import { Carousel } from "react-bootstrap"
-const SingleItem = () =>{
+import { Carousel } from "react-bootstrap";
+import { useState, useEffect } from 'react';
+import CommentView from './CommentView';
+import { useLocation } from "react-router-dom";
+
+const SingleItem = (props) =>{
+
+  const {state} = useLocation();
+
+  const cat =state.detail[1]
+  const [name, setname] = useState('');
+  const [price, setprice] = useState('');
+  const [availability, setavailability] = useState('');
+  const [discription, setdiscription] = useState('');
+  const [size, setsize] = useState('');
+  const [category, setcategory] = useState('');
+  const [image, setimage] = useState('');
+  const [comments, setComments] = useState([])
+  const [error, setError] = useState(false);
+  const [errorMessage, setError_message] = useState('')
+
+  const [rating, setrating] = useState(1);
+  const [comment, setcomment] = useState('');
+
+  const id = state.detail[0]
+  var gas = false
+
+  useEffect(() => {
+      send_data();
+    }, []);
+
+  var url =''
+  var wish_url = ''
+  var comment_url = ''
+
+  if (cat=="RESTURANT"){
+    url = `http://localhost:8000/api/food/${id}/`
+    wish_url=  'http://localhost:8000/api/food_wishlist/'
+    comment_url=  'http://localhost:8000/api/review_food/'
+}
+else if (cat=="GAS STATION"){
+  url = `http://localhost:8000/api/gas/${id}/`
+  wish_url=  'http://localhost:8000/api/gas_wishlist/'
+  gas = true
+  
+}
+else if (cat=="BOUTIQUE"){
+  url = `http://localhost:8000/api/cloth/${id}/`
+  wish_url=  'http://localhost:8000/api/cloth_wishlist/'
+  comment_url=  'http://localhost:8000/api/review_cloth/'
+}
+else if (cat=="HARDWARE STORE"){
+  url = `http://localhost:8000/api/product/${id}/`
+  wish_url=  'http://localhost:8000/api/product_wishlist/'
+  comment_url=  'http://localhost:8000/api/review_product/'
+}
+
+  async function get_data() {
+
+      let response = await fetch(url, {
+       method: 'GET',
+       headers: {
+         'Accept': 'application/json',
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${sessionStorage.getItem("access_token")}` }
+        })
+  
+      let data = await response.json();
+      return data
+  }
+
+  async function handleAdd() {
+
+    try{
+      let response = await fetch(wish_url, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionStorage.getItem("access_token")}` ,
+      },   body: JSON.stringify({
+       item_id:id
+     })
+         })
+   
+       let data = await response.json();
+    }
+
+    catch{
+      setError(true)
+              setError_message("Added to wish list")
+    }
+}
+
+const handlereview = (e) => {
+  setcomment(e.target.value);
+ 
+  };
+
+const handlerating = (e) => {
+  setrating(e.target.value);
+  
+  };
+
+async  function handleaddcommment (e) {
+
+  try{
+    let response = await fetch(comment_url, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${sessionStorage.getItem("access_token")}` ,
+    },   body: JSON.stringify({
+     item:id,
+     date:new Date().toISOString().split('T')[0],
+     rating:rating,
+     review:comment,
+   })
+       })
+       window.location.reload();
+     let data = await response.json();
+  }
+
+  catch{
+    console.log("error")
+  }
+
+}
+
+  function send_data() {
+
+      try{
+        get_data().then(function(data){
+         
+          setname(data.name)
+          setprice(data.price)
+
+          try{
+            setComments(data.feedbacks)
+          }
+
+          catch{
+            console.log()
+          }
+          
+
+          if(data.image){
+            setimage(data.image)
+          }
+
+          if(data.availability){
+            setavailability(data.availability)
+          }
+
+          if(data.discription){
+            setdiscription(data.discription)
+          }
+
+          if(data.size_aviliable){
+            setsize(data.size_aviliable)
+          }
+
+          if(data.category){
+            setcategory(data.category)
+          }
+         
+        
+         }) .catch(function(err) {
+          console.log(err)
+      });
+         
+      }
+      catch (error) {
+       console.log(error);
+     }
+    }
+
+
+    var commentResults = []
+
+if (comments){
+  comments.forEach(data => {
+     
+    commentResults.push(<CommentView comment={data}/>)
+
+});
+}
+
+    const showerrorMessage = () => {
+      return (
+      <div
+      className="success"
+      style={{
+      display: error ? '' : 'none',
+      }}>
+      <h4 className='success-message'>{errorMessage} !!</h4>
+      </div>
+      );
+      };
 
     return(
 
@@ -10,45 +208,27 @@ const SingleItem = () =>{
         <div className='single-item-top'>
 
           <div className="row mt-5">
-
+          {image && 
             <div className="col-6 slide-show">
 
-              <Carousel>
-                
-                <Carousel.Item>
+            
                   <img
-                    className=" img-fluid slides"
-                    src="https://images.unsplash.com/photo-1640955014216-75201056c829?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=onur-binay-auf3GwpVaOM-unsplash.jpg"
-                    alt="First slide"
-                  />
-                </Carousel.Item>
-
-                <Carousel.Item>
-                  <img
-                    className="img-fluid slides"
-                    src="https://images.unsplash.com/photo-1640955014216-75201056c829?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=onur-binay-auf3GwpVaOM-unsplash.jpg"
-                    alt="Second slide"
-                  />
-                </Carousel.Item>
-
-                <Carousel.Item>
-                  <img
-                    className="img-fluid slides"
-                    src="https://images.unsplash.com/photo-1640955014216-75201056c829?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=onur-binay-auf3GwpVaOM-unsplash.jpg"
+                    className="slides"
+                    src={image}
                     alt="Third slide"
+                    height={900}
                   />
-                </Carousel.Item>
-
-              </Carousel>
+          
                 
                 </div>
+}
 
             <div className="col-5 single-item-discription mt-1">
           
               <div className="container text-center">
-
+              {showerrorMessage()}
                 <div className="row">
-                    <p className='single-item-name text-center'>Item name
+                    <p className='single-item-name text-center'>{name}
                         <spna><button className='single-item-cart-btn'>
                           <i className="fa fa-shopping-cart"></i></button>
                         </spna>
@@ -59,15 +239,7 @@ const SingleItem = () =>{
                 <div className="row">
 
                     <p className='single-item-disc text-center'>
-                      It is a long established fact that a reader will be distracted 
-                      by the readable content of a page when looking at its layout. The 
-                      point of using Lorem Ipsum is that it has a more-or-less normal 
-                      distribution of letters, as opposed to using 'Content here, content 
-                      here', making it look like readable English. Many desktop publishing
-                       packages and web page editors now use Lorem Ipsum as their default model 
-                       text, and a search for 'lorem ipsum' will uncover many web sites still in 
-                       their infancy. Various versions have evolved over the years, sometimes by 
-                       accident, sometimes on purpose (injected humour and the like).
+                    {discription &&  <p className="item-discription mt-2">{discription} </p>}
                     </p>          
                  
                 </div>
@@ -75,22 +247,19 @@ const SingleItem = () =>{
                 <div className="row">
 
                   <div className='col-6'>
-                    <p className='single-item-price'>2000 birr</p>
-                  </div>
+                 
+  {availability &&  <p className="item-discription mt-1">Availability: {availability} </p>}
+  {category &&  <p className="mt-2"><small>{category}</small> </p>}
+  {size &&  <p className="item-discription mt-1">Size: {size} </p>}
+  
+                    <p className='single-item-price'>{price} birr</p>
 
-                  <div className="col-6">
-                    <span className="fa fa-star checked"></span>
-                    <span className="fa fa-star checked"></span>
-                    <span className="fa fa-star checked"></span>
-                    <span className="fa fa-star"></span>
-                    <span className="fa fa-star"></span>
-                    <span className="single-item-rate-count"> 500</span>
                   </div>
 
                 </div>
 
-                <div className='row tetx-center mt-4'>
-                  <button className='btn btn-primary'>Go to shop</button>
+                <div className='row tetx-center mt-4 mb-5'>
+                  <button className='btn btn-primary' onClick={handleAdd}>Add to wish list</button>
                 </div>
 
               </div>
@@ -101,61 +270,47 @@ const SingleItem = () =>{
 
         </div> 
 
-        <section className='mt-5'>
+{!gas &&         <section className='mt-5'>
 
-          <div className="container comment-con">
+<div className='shop_view_items'>
+    
 
-            <div className="row">
-
-              <div className="col-sm-5 col-md-6 col-12 pb-4">
-
-                <h1>Comments</h1>
-
-                <div className="comment mt-4 text-justify float-left"> <img src="https://i.imgur.com/yTFUilP.jpg" alt="" className="rounded-circle" width="40" height="40"/>
-                    <h4>Jhon Doe</h4> <span>- 20 October, 2018</span> <br/>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
-                </div>
-
-                <div className="comment mt-4 text-justify float-left"> <img src="https://i.imgur.com/CFpa3nK.jpg" alt="" className="rounded-circle" width="40" height="40"/>
-                    <h4>Rob Simpson</h4> <span>- 20 October, 2018</span> <br/>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
-                </div>
-
-                <div className="comment mt-4 text-justify float-left"> <img src="https://i.imgur.com/yTFUilP.jpg" alt="" className="rounded-circle" width="40" height="40"/>
-                    <h4>Jhon Doe</h4> <span>- 20 October, 2018</span> <br/>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
-                </div>
-
-                <div className="comment mt-4 text-justify float-left"> <img src="https://i.imgur.com/CFpa3nK.jpg" alt="" className="rounded-circle" width="40" height="40"/>
-                    <h4>Rob Simpson</h4> <span>- 20 October, 2018</span> <br/>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
-                </div>
-
-              </div>
-
-              <div className="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
-
-                <form className='comment-form' id="algin-form">
-
-                    <div className="form-group">
-                        <h4>Leave a comment</h4> <label className='comment-label' for="message">Message</label> <textarea name="msg" id="" msg cols="30" rows="5" className="form-control"></textarea>
-                    </div>
-
-                    <div className="form-group"> <label className='comment-label'  for="name">Name</label> <input type="text" name="name" id="fullname" className="form-control comment-input"/> </div>
-                    
-                    <div className="form-group"> <label className='comment-label'  for="email">Email</label> <input type="text" name="email" id="email" className="form-control comment-input"/> </div>
-
-                    <div className="form-group"> <button type="button" className="post">Post Comment</button> </div>
-                
-                </form>
-
-              </div>
-
+    <div className="row">
+    
+    <div className="col-sm-5 col-md-6 col-12 pb-4">
+    
+      <h1>Comments</h1>
+      <div className="container comment-con">
+      {commentResults}  
+    
+    </div>
+    
+    </div>
+    
+    
+    <div className="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
+    
+    <form className='comment-form' id="algin-form">
+    
+        <div className="form-group">
+            <h4>Leave a comment</h4> <label className='comment-label' for="message">Message</label>
+             <textarea name="msg" id="" value={comment} onChange={handlereview} msg cols="30" rows="5" className="form-control"></textarea>
+        </div>
+    
+        <div className="form-group"> <label className='comment-label'  for="name">Rating</label> 
+        <input type="number" value={rating} onChange={handlerating} name="name" id="fullname" min="1" max="5" className="form-control comment-input"/> </div>
+        
+        <div className="form-group"> <button onClick={handleaddcommment} type="button" className="post">Post Comment</button> </div>
+    
+    </form>
+    
+    </div>
+    </div>
+    
+    
             </div>
 
-        </div>
-
-      </section>
+</section>}
                 
   </div>
     )

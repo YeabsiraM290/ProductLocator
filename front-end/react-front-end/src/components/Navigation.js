@@ -1,17 +1,51 @@
 import {Form, FormControl,Button } from "react-bootstrap"
 import './assets/css/navbar.css'
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
+import { setSelectionRange } from "@testing-library/user-event/dist/utils";
+
 
 const Navigation = () =>{
+    const history = useNavigate();
 
-  const history = useNavigate();
+const [keyterm, setkeyterm] = useState('');
+const [customer, setcustomer] = useState(false);
+const [vendor, setvendor] = useState(false);
+const [none, setnone] = useState(false);
 
-  const search = (e) => {
+useEffect (() => {
+    if(sessionStorage.getItem('type') == 'VENDOR'){
+        setvendor(true)
+    }
+    
+    else if (sessionStorage.getItem('type') == 'CUSTOMER'){
+        setcustomer(true)
+    }
+    
+    else{
+        setnone(true)
+    }
+    
+ 
+    
+})
 
-      e.preventDefault();
-      history('/search_result');
-  };
+const handelKey = (e) =>{
+    setkeyterm(e.target.value)
+}
+
+const handelLogout = (e) =>{
+    e.preventDefault();
+    sessionStorage.clear()
+    history( '/login' )
+}
+
+
+const handelSearch = (e) =>{
+    e.preventDefault();
+    history( '/search_result',{state: {detail:keyterm}} )
+}
 
     return(
 
@@ -27,16 +61,20 @@ const Navigation = () =>{
           placeholder="Search"
           className="me-2 search-bar"
           aria-label="Search"
+          required='true'
+          onChange={handelKey}
         />
-                <Button onClick={search} className="search-btn">Search</Button>
+                <Button onClick={handelSearch} className="search-btn">Search</Button>
       </Form></li>
-                <li className="nav-item"> <a className="nav-link" href="/profile">Profile</a> </li>
-                <li className="nav-item"> <a className="nav-link" href="/vendor_profile">Vendor</a> </li>
+                {customer && <li className="nav-item"> <a className="nav-link" href="/profile">Profile</a> </li> }
+                {vendor && <li className="nav-item"> <a className="nav-link" href="/vendor_profile">Vendor</a> </li>}
                 
-                <li className="nav-item"> <a className="nav-link" href="/shop_view">Shop</a> </li>
-                <li className="nav-item"> <a className="nav-link" href="/wish_list">Wish List</a> </li>
-                <li className="nav-item"> <a className="nav-link" href="/login">Login</a> </li>
-                <li className="nav-item"> <a className="nav-link" href="/vendor_signup_1">Register</a> </li>
+                {vendor &&  <li className="nav-item"> <a className="nav-link" onClick={handelLogout}>Logout</a> </li>}
+                {customer &&  <li className="nav-item"> <a className="nav-link" href="/wish_list">Wish List</a> </li>}
+                {customer &&  <li className="nav-item"> <a className="nav-link" onClick={handelLogout}>Logout</a> </li>}
+               
+               {none && <li className="nav-item"> <a className="nav-link" href="/login">Login</a> </li> }
+               {none && <li className="nav-item"> <a className="nav-link" href="/vendor_signup_1">Vendor Register</a> </li> }
 
             </ul>
             

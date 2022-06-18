@@ -9,7 +9,7 @@ const VendorMenu = () => {
 
             <div className="col mt-3"><a className='vendor-menu-items' href='/vendor_profile'>Profile</a></div>
             <div className="col mt-3"><a className='vendor-menu-items' href='/item_control'>Products</a></div>
-            <div className="col mt-3"><a className='vendor-menu-items'>Advertisment</a></div>
+            <div className="col mt-3"><a className='vendor-menu-items' href='/subscription'>Subscription</a></div>
 
         </div>
     )

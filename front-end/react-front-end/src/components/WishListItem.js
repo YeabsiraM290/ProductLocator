@@ -1,6 +1,50 @@
 import React, { Component }  from 'react';
-const WishListItem = () => {
+import { useState, useEffect } from 'react';
+const WishListItem = (props) => {
 
+    const [name, setName] = useState('');
+    const [image, setimage] = useState('')
+    const [id, setId] = useState('')
+    const [price, setPrice] = useState('')
+    const [username, setUsername] = useState('')
+    const [share, setShare] = useState(false)
+
+    useEffect(() => {
+        setName(props.item.name);
+        setimage(props.item.image);
+        setId(props.item.id)
+        setPrice(props.item.price)
+      }, []);
+
+      const handleUsername = (e) => {
+
+          setUsername(e.target.value)
+      }
+
+      const handleShare = (e) => {
+
+        setShare(!share)
+    }
+
+
+      async function send (e) {
+        let response = await fetch('http://localhost:8000/api/notification/', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionStorage.getItem("access_token")}` },
+            body: JSON.stringify({
+                item: id,
+                username: username,
+            })
+           })
+
+           setShare(false)
+   
+        
+      }
+    
     return(
 
         <tr>
@@ -10,7 +54,7 @@ const WishListItem = () => {
                 <div className="row wish-list-item-info">
 
                     <div className="col-md-3 text-left">
-                        <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=christian-wiediger-KV2vFOYItcY-unsplash.jpg" alt="" className="img-fluid d-none d-md-block rounded mb-2 shadow "/>
+                        <img src={image} alt="" className="img-fluid d-none d-md-block rounded mb-2 shadow "/>
                     </div>
 
                     <div className="col-md-7 mt-sm-2">
@@ -19,21 +63,10 @@ const WishListItem = () => {
 
                             <div className="col-10">
 
-                            <h4>Product Name</h4>
+                            <h4>{name}</h4>
 
-                                <p className='single-item-disc'>
-                                    It is a long established fact that a reader will be distracted 
-                                    by the readable content of a page when looking at its layout. The 
-                                    point of using Lorem Ipsum is that it has a more-or-less normal 
-                                    distribution of letters, as opposed to using 'Content here, content 
-                                    here', making it look like readable English. Many desktop publishing
-                                    packages and web page editors now use Lorem Ipsum as their default model 
-                                    text, and a search for 'lorem ipsum' will uncover many web sites still in 
-                                    their infancy. Various versions have evolved over the years, sometimes by 
-                                    accident, sometimes on purpose (injected humour and the like).
-                                </p> 
 
-                                <p className="single-item-disc"><b>Price:</b>  2000 birr</p>
+                                <p className="single-item-disc"><b>Price:</b>  {price} birr</p>
 
                             </div>
 
@@ -41,12 +74,17 @@ const WishListItem = () => {
 
                                 <div className="text-right">
 
-                                    <button className="wish-list-btns btn btn-white border-secondary bg-white btn-md mb-2">
-                                        <i className="fa fa-share "></i>
-                                    </button>
-                                    <button className="wish-list-btns btn btn-white border-secondary bg-white btn-md mb-2">
+                                   {!share && <button className="wish-list-btns btn btn-white border-secondary bg-white btn-md mb-2" onClick={handleShare}>
+                                        <i className="fa fa-share ">Share</i> 
+                                    </button>}
+                                    {share && <div><p className='username-lable'>Username:</p> <input type="text" id="username"  onChange={handleUsername} value={username} className="form-control username" /> </div>}
+
+                                    {/* <button className="wish-list-btns btn btn-white border-secondary bg-white btn-md mb-2">
                                         <i className="fa fa-trash"></i>
-                                    </button>
+                                    </button> */}
+                                     {share && <button className="wish-list-btns btn btn-white border-secondary bg-white btn-md mb-2" onClick={send}>
+                                        <i className="fa fa-share ">Share</i> 
+                                    </button>}
 
                                 </div>
                             </div>  

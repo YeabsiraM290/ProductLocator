@@ -1,35 +1,58 @@
 import React, { Component }  from 'react';
 import './assets/css/homeItem.css'
+import { useNavigate } from 'react-router-dom';
 
-const HomeItem = () => {
+const HomeItem = (props) => {
+    let history = useNavigate();
+    var item = props.item
+    var id = item.id
+    var cat = ''
+
+    if (item.category){
+       cat = "RESTURANT"
+    }
+    else if (item.availability){
+     cat ="GAS STATION"
+    }
+    else if (item.size_aviliable){
+      cat = "BOUTIQUE"
+    }
+    else{
+      cat = "HARDWARE STORE"
+    }
+
+    const handleViewmore = (e) =>{
+        var item_info = [id,cat ]
+        history( '/item_view',{state: {detail:item_info}} )
+    }
 
     return (
-
+        <div className="col-4">
         <div className="home-product">
-            
-            <div className="home-product-img">
-                <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=christian-wiediger-KV2vFOYItcY-unsplash.jpg" alt="Product" className="img-responsive" />
-            </div>
+            {item.image &&      <div className="home-product-img">
+                <img src= {'http://localhost:8000'.concat(item.image)} alt="Product" className="img-responsive" height={200}  />
+            </div>}
+       
 
             <div className="home-product-text">
 
                 <div className="toshop">
-                    <span>Got to shop</span>
+                    <span onClick={handleViewmore}>View more</span>
                 </div>
 
                 <div className="home-product-title">
-                    <h3>Gaming computer</h3>
+                    <h3>{item.name}</h3>
                 </div>
+                {item.discription && 
+                <div className="home-product-description p-1">
+                    <p>{item.discription}</p>
+                </div> }
 
-                <div className="home-product-description">
-                    <p>Description Product tell me how to change playlist height size like 600px in html5 player. player good work now check this link</p>
-                </div>
+                <div className="row">
 
-                <div className="row mt-4">
+                    <div className="home-product-price text-center col-9"><b>{item.price}</b> birr </div>
 
-                    <div className="home-product-price col-9">1000 birr</div>
-
-                    <div className='col-3'><button className='home-item-cart-btn'><i class="fa fa-shopping-cart"></i></button></div> 
+                    
 
                 </div>
           
@@ -37,6 +60,7 @@ const HomeItem = () => {
             </div>
 
         </div>  
+        </div>
     )
 }
 

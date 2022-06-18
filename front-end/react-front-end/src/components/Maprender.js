@@ -13,7 +13,9 @@ import resturant_icon from './icons/restaurant.png'
 import cloth from './icons/cloth.png'
 import tool from './icons/tools.png'
 import gas from './icons/gas.png'
-import Maprender from './Maprender';
+import location from './icons/location.png'
+
+
 
 function addMarkers(lonLatArray, cat) {
   var FoodiconStyle = new Style({
@@ -48,77 +50,86 @@ function addMarkers(lonLatArray, cat) {
     }),
   });
 
+  var MyiconStyle = new Style({
+    image: new Icon({
+      anchorXUnits: "fraction",
+      anchorYUnits: "pixels",
+      src: location,
+    }),
+  });
+
   var count = 0;
   let features = lonLatArray.map((item) => {
     let feature = new Feature({
       geometry: new Point(fromLonLat(item)),
-      
     });
-    if(cat[count]=='GAS STATION'){
+    if(cat[count]==='GAS STATION'){
       feature.setStyle(GasiconStyle);
+     
     }
-    else if(cat[count]=='RESTURANT'){
+    else if(cat[count]==='RESTURANT'){
       feature.setStyle(FoodiconStyle);
     }
-    else if(cat[count]=='BOUTIQUE '){
+    else if(cat[count]==='BOUTIQUE'){
       feature.setStyle(ClothiconStyle);
     }
-    else if(cat[count]=='HARDEWARE STORE'){
+    else if(cat[count]==="HARDWARE STORE"){
       feature.setStyle(HardwareiconStyle);
+    }
+    else{
+      feature.setStyle(MyiconStyle);
+      
     }
  
     count+=1
+
     return feature;
   });
   
   return features;
 }
 
-const Maps = () => {
-
-  const [shops, setShops] = useState([]);
-  const [loading, setloading] = useState(false);
-
-  useEffect(() => {
-    send_data();
-  }, []);
-
-
-  async function get_data() {
-
-    let response = await fetch('http://localhost:8000/api/shop/', {
-     method: 'GET',
-     headers: {
-       'Accept': 'application/json',
-       'Content-Type': 'application/json',
-       'Authorization': `Bearer ${sessionStorage.getItem("access_token")}` }
-      })
-
-    let data = await response.json();
-    return data
-}
-
-function send_data() {
-
-  try{
-    get_data().then(function(data){
-
-      setShops(data)
-
-     }) .catch(function(err) {
-      console.log(err)
-  });
+getLocation()
+function getLocation(){
+  if (navigator.geolocation){
+    
+      navigator.geolocation.getCurrentPosition(showPosition,showError);
+  }
+  else{
+   console.log('no location')
      
   }
-  catch (error) {
-   console.log(error);
- }
+}
+function showError(){
+  console.log('error')
 }
 
 
-var LonLat = []
 
-shops.forEach(data => {
+function showPosition(position){
+  const lat=position.coords.latitude;
+  const long=position.coords.longitude;
+  setlocation(lat, long)
+}
+
+var positions = []
+
+function setlocation(lat, long){
+positions[0] = Number((lat).toFixed(1))
+positions[1] = Number((long).toFixed(1))
+}
+
+
+
+const Maprender = (props) => {
+
+    const [center, setCenter] = useState(mapConfig.center);
+    const [zoom, setZoom] = useState(9);
+    // const [features, setfeatures] = useState(props.features)
+
+    var LonLat = [[positions[0], positions[1]]]
+
+props.features.forEach(data => {
 
   LonLat.push([data['more']['location_latitude'], data['more']['location_longitude']])
   
@@ -128,38 +139,39 @@ shops.forEach(data => {
 
 
 
-var cat = []
+var cat = ['my']
 
-shops.forEach(data => {
+props.features.forEach(data => {
 
     cat.push(data.more['category'])
   
-  
-  
 });
+console.log(cat)
+
+var features = addMarkers(LonLat, cat)
 
 
-  const [center, setCenter] = useState(mapConfig.center);
-  const [zoom, setZoom] = useState(9);
-
-  var features = addMarkers(LonLat, cat)
-
-  useEffect(()=>{
-
-    if(shops.length >1){
-      setloading(true)
-    }
-
-  })
+console.log(features)
 
   return (
-    <div>
-      {loading &&  <div>
-   <Maprender features={shops}/>
- </div>}
 
- </div>
+    <div>
+
+      <Map center={fromLonLat(center)} zoom={zoom}>
+        <Layers>
+          <TileLayer source={osm()} zIndex={0} />
+
+        <VectorLayer source={vector({ features })} />
+        </Layers>
+        <Controls>
+          <FullScreenControl />
+        </Controls>
+      </Map>
+
+      <hr />
+    
+    </div> 
   );
 };
 
-export default Maps;
+export default Maprender;

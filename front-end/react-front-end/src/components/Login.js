@@ -45,10 +45,16 @@ const Login = () => {
                    
                    setSubmitted(true)
                    setError(false)
-
+                   console.log(user)
+                   sessionStorage.clear()
                    sessionStorage.setItem("access_token", user.access)
                    sessionStorage.setItem("refresh_token", user.refresh)
                    sessionStorage.setItem("id", user.account['id'])
+                   sessionStorage.setItem("type", user.account['type'])
+
+                   if(user.account['type'] == 'VENDOR'){
+                    sessionStorage.setItem("cat", user.account['more']['category'])
+                   }
 
                    setTimeout(toHome, 500)
                    function toHome(){
@@ -58,7 +64,7 @@ const Login = () => {
                }
                else{
                    setError(true)
-                   setError_message('Fill proper message')
+                   setError_message('Wrong username or password')
                }
                
             }
@@ -147,14 +153,6 @@ const Login = () => {
 
                         <div className="form-check">
 
-                            <input
-                                className="form-check-input"
-                                type="checkbox"
-                                value=""
-                                id="rememberme"
-                            />
-
-                            <label className="form-check-label" for="rememberme"> Remember me </label>
 
                         </div>
 
@@ -162,7 +160,7 @@ const Login = () => {
 
                     <div className="col">
 
-                        <a className="for-pass small-text links" href="/forget_password">Forgot password?</a>
+                       
 
                     </div>
 

@@ -24,4 +24,14 @@
     color: white;
 }
 
+.username{
+    width: 290px;
+    border-color: grey;
+}
+
+.username-lable{
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
 
